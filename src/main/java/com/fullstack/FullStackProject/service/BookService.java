@@ -6,6 +6,7 @@ import com.fullstack.FullStackProject.repo.BookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -33,6 +34,7 @@ public class BookService {
         return (Book) bookRepo.findBookById(id).orElseThrow(() -> new UserNotFoundException("Book by id " + id + " was not found"));
     }
 
+    @Transactional
     public void deleteBook(Long id) {
         bookRepo.deleteBookById(id);
     }
